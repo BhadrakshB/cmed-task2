@@ -42,7 +42,7 @@ Map<String, dynamic> _$CharacterModelToJson(CharacterModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'alternate_names': instance.alternate_names,
+      'alternate_names': instance.alternateNames,
       'species': instance.species,
       'gender': instance.gender,
       'house': instance.house,
@@ -57,7 +57,7 @@ Map<String, dynamic> _$CharacterModelToJson(CharacterModel instance) =>
       'hogwartsStudent': instance.hogwartsStudent,
       'hogwartsStaff': instance.hogwartsStaff,
       'actor': instance.actor,
-      'alternate_actors': instance.alternate_actors,
+      'alternate_actors': instance.alternateActors,
       'alive': instance.alive,
       'image': instance.image,
     };

@@ -7,7 +7,9 @@ class CharacterModel {
 
   final String? id;
   final String? name;
-  final List<String?> alternate_names;
+
+  @JsonKey(name: 'alternate_names')
+  final List<String?> alternateNames;
   final String? species;
   final String? gender;
   final String? house;
@@ -23,11 +25,12 @@ class CharacterModel {
   final bool? hogwartsStudent;
   final bool? hogwartsStaff;
   final String? actor;
-  final List<String?> alternate_actors;
+  @JsonKey(name: 'alternate_actors')
+  final List<String?> alternateActors;
   final  String? alive;
   final String? image;
 
-  CharacterModel(this.id, this.name, this.alternate_names, this.species, this.gender, this.house, this.dateOfBirth, this.yearOfBirth, this.wizard, this.ancestry, this.eyeColour, this.hairColour, this.wand, this.patronus, this.hogwartsStudent, this.hogwartsStaff, this.actor, this.alternate_actors, this.alive, this.image,);
+  CharacterModel(this.id, this.name, this.alternateNames, this.species, this.gender, this.house, this.dateOfBirth, this.yearOfBirth, this.wizard, this.ancestry, this.eyeColour, this.hairColour, this.wand, this.patronus, this.hogwartsStudent, this.hogwartsStaff, this.actor, this.alternateActors, this.alive, this.image,);
 
   factory CharacterModel.fromJson(Map<String, dynamic> json) => _$CharacterModelFromJson(json);
 
