@@ -58,7 +58,7 @@ class _BuildHomePageState extends State<BuildHomePage> {
           slivers: [
             SliverAppBar(
               centerTitle: true,
-              title: const Text("The Potterverse", style: TextStyle()),
+              title: const Text("The Potterverse", style: TextStyle(),),
               backgroundColor: Theme.of(context).primaryColor,
             ),
             provider.characters.isNotEmpty ? SliverList(delegate: SliverChildBuilderDelegate(
@@ -69,7 +69,7 @@ class _BuildHomePageState extends State<BuildHomePage> {
                 }
             ),
               
-            ): const Center(child: CircularProgressIndicator(),),
+            ): const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator(),)),
           ],
         ),
     ) ;

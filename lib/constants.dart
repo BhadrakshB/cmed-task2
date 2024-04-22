@@ -9,9 +9,6 @@ ThemeData lightTheme = ThemeData(
 
   ),
 
-  textTheme: TextTheme(
-
-  )
 );
 
 ThemeData darkTheme = ThemeData(
