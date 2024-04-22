@@ -16,9 +16,7 @@ CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) =>
       json['species'] as String?,
       json['gender'] as String?,
       json['house'] as String?,
-      json['dateOfBirth'] == null
-          ? null
-          : DateTime.parse(json['dateOfBirth'] as String),
+      json['dateOfBirth'] as String?,
       json['yearOfBirth'] as int?,
       json['wizard'] as bool?,
       json['ancestry'] as String?,
@@ -34,7 +32,7 @@ CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) =>
       (json['alternate_actors'] as List<dynamic>)
           .map((e) => e as String?)
           .toList(),
-      json['alive'] as String?,
+      json['alive'] as bool?,
       json['image'] as String?,
     );
 
@@ -46,7 +44,7 @@ Map<String, dynamic> _$CharacterModelToJson(CharacterModel instance) =>
       'species': instance.species,
       'gender': instance.gender,
       'house': instance.house,
-      'dateOfBirth': instance.dateOfBirth?.toIso8601String(),
+      'dateOfBirth': instance.dateOfBirth,
       'yearOfBirth': instance.yearOfBirth,
       'wizard': instance.wizard,
       'ancestry': instance.ancestry,

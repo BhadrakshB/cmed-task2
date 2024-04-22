@@ -1,5 +1,6 @@
 import '../../data/models/characters_model.dart';
 
 abstract class AppRepository {
-  Future<List<CharacterModel>> downloadAsset();
+  Future<List<CharacterModel>> getCharacters();
+  Future<CharacterModel> getCharacterById(String id);
 }

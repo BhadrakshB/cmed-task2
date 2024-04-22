@@ -12,9 +12,13 @@ class AppRepositoryImpl extends AppRepository {
 
 
   @override
-  Future<List<CharacterModel>> downloadAsset() async {
+  Future<List<CharacterModel>> getCharacters() async {
     return _charactersDataSource.getCharacters();
+  }
 
+  @override
+  Future<CharacterModel> getCharacterById(String id) async {
+    return _charactersDataSource.getCharacterById(id);
   }
 
 }

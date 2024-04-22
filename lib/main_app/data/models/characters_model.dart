@@ -13,7 +13,7 @@ class CharacterModel {
   final String? species;
   final String? gender;
   final String? house;
-  final DateTime? dateOfBirth;
+  final String? dateOfBirth;
   final int? yearOfBirth;
   final bool? wizard;
   final String? ancestry;
@@ -27,7 +27,7 @@ class CharacterModel {
   final String? actor;
   @JsonKey(name: 'alternate_actors')
   final List<String?> alternateActors;
-  final  String? alive;
+  final  bool? alive;
   final String? image;
 
   CharacterModel(this.id, this.name, this.alternateNames, this.species, this.gender, this.house, this.dateOfBirth, this.yearOfBirth, this.wizard, this.ancestry, this.eyeColour, this.hairColour, this.wand, this.patronus, this.hogwartsStudent, this.hogwartsStaff, this.actor, this.alternateActors, this.alive, this.image,);
