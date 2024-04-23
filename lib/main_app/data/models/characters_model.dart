@@ -1,3 +1,4 @@
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:task2/main_app/data/models/wand_model.dart';
 
@@ -35,5 +36,6 @@ class CharacterModel {
   factory CharacterModel.fromJson(Map<String, dynamic> json) => _$CharacterModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CharacterModelToJson(this);
+
 }
 

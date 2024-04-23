@@ -9,7 +9,7 @@ abstract class ApiService {
   @GET('/api/characters')
   Future<List<CharacterModel>> fetchCharacters();
 
-  @GET('/api/characters/{id}')
-  Future<CharacterModel> fetchCharacterFromId(@Path('id') String id);
+  @GET('/api/character/{id}')
+  Future<List<CharacterModel>> fetchCharacterFromId(@Path('id') String id);
 
 }

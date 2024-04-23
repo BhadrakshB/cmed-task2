@@ -40,6 +40,21 @@ class CharactersProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void _reset() {
+    if (FetchState != FetchState.error) {
+      Future.delayed(
+        const Duration(seconds: 5),
+            () {
+          _setState(
+              newApiState:
+              FetchState
+                  .idle);
+        },
+
+      );
+    }
+  }
+
   FetchState
   _FetchState =
       FetchState.idle;
@@ -78,7 +93,7 @@ class CharactersProvider extends ChangeNotifier {
               .fetched);
 
     } catch (e) {
-      print("ERROR: $e");
+      print("ERROR: $e\n");
       _setState(
           newApiState:
           FetchState
@@ -88,18 +103,9 @@ class CharactersProvider extends ChangeNotifier {
       // Set ApiState to error if fetch fails
     }
     // Reset ApiState to idle after 5 seconds
-    Future.delayed(
-      const Duration(seconds: 5),
-          () {
-        _setState(
-            newApiState:
-            FetchState
-                .idle);
-      },
+    _reset();
 
-    );
 
-    print("Finished getCharacters function from provider. this is the current state: $_FetchState");
   }
 
   Future<void> getCharacterById(String id) async {
@@ -127,15 +133,6 @@ class CharactersProvider extends ChangeNotifier {
       // Set ApiState to error if fetch fails
     }
     // Reset ApiState to idle after 5 seconds
-    Future.delayed(
-      const Duration(seconds: 5),
-          () {
-        _setState(
-            newApiState:
-            FetchState
-                .idle);
-      },
-
-    );
+    _reset();
   }
 }

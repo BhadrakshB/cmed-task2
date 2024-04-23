@@ -5,12 +5,13 @@ import '../../data/models/characters_model.dart';
 class CustomListTile extends StatelessWidget {
 
   final CharacterModel character;
-  const CustomListTile({super.key, required this.character});
+  final VoidCallback onTap;
+  const CustomListTile({super.key, required this.character, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-
+      onTap: onTap,
       style: ListTileStyle.drawer,
       isThreeLine: true,
       leading: CircleAvatar(foregroundImage: NetworkImage(character.image!),),

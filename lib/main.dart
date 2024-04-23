@@ -1,10 +1,8 @@
-import 'dart:isolate';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
-import 'main_app/presentation/pages/home_page.dart';
+import 'main_app/router/routes.dart';
 
 void main() {
 
@@ -22,24 +20,18 @@ class MyApp
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
 
-
-  @override
-  void initState() {
-
-    super.initState();
-
-  }
-
-  @override
+  final AppRouter _appRouter = AppRouter();
+    @override
   Widget build(
       BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
       title: 'CMED Task 2',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      home: HomePage(),
+
     );
   }
 }

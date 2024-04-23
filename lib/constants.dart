@@ -5,9 +5,11 @@ ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   colorSchemeSeed: Colors.indigo,
   appBarTheme: AppBarTheme(
-    color: Colors.indigoAccent,
-
+    backgroundColor: Colors.indigoAccent.shade100,
   ),
+  iconTheme: IconThemeData(
+    color: Colors.white10,
+  )
 
 );
 
@@ -15,8 +17,9 @@ ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.dark,
   colorSchemeSeed: Colors.white10,
+
   appBarTheme: AppBarTheme(
-    color: Colors.indigo,
+    backgroundColor: Colors.indigo,
   ),
 );
 

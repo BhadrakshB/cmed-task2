@@ -8,21 +8,23 @@ class CharactersDataSource {
   final service = ApiService(Dio(BaseOptions(contentType: "application/json"),),);
 
   Future<List<CharacterModel>> getCharacters() async {
-    try {
+    // try {
       final response = await service.fetchCharacters();
       print("RESPONSE: ${response}");
       return response;
-    } catch(e) {
-      throw Exception("ERROR: $e Failed to fetch characters from Hogwarts");
-    }
+    // } catch(e) {
+    //   throw Exception("ERROR: ${e}");
+    // }
   }
 
   Future<CharacterModel> getCharacterById(String id) async {
     try {
-      final response = await service.fetchCharacterFromId(id);
+      final response = (await service.fetchCharacterFromId(id) as List<dynamic>).elementAt(0);
+
       return response;
     } catch(e) {
-      throw Exception("Failed to fetch character with id: $id from Hogwarts");
+      print("ERROR: $e");
+      throw Exception("$e : Failed to fetch character with id: $id from Hogwarts");
     }
   }
 }
