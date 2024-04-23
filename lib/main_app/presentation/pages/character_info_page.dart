@@ -3,17 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/models/characters_model.dart';
+import '../../data/models/wand_model.dart';
 import '../providers/characters_provider.dart';
 import '../widgets/custom_list_tile.dart';
 
 @RoutePage()
-class CharacterInfoPage extends StatelessWidget {
+class CharacterInfoPage
+    extends StatelessWidget {
 
   final String characterId;
-  const CharacterInfoPage({super.key, required this.characterId});
+
+  const CharacterInfoPage(
+      {super.key, required this.characterId});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+      BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext
       context) =>
@@ -31,7 +36,8 @@ class CharacterInfoPage extends StatelessWidget {
 
 class BuildCharacterInfoPage
     extends StatefulWidget {
-  const BuildCharacterInfoPage(this.characterId,
+  const BuildCharacterInfoPage(
+      this.characterId,
       {super.key,
         required this.context});
 
@@ -39,7 +45,8 @@ class BuildCharacterInfoPage
   final String characterId;
 
   @override
-  State<BuildCharacterInfoPage>
+  State<
+      BuildCharacterInfoPage>
   createState() =>
       _BuildHomePageState();
 }
@@ -56,22 +63,27 @@ class _BuildHomePageState
           context
               .read<
               CharactersProvider>()
-              .getCharacterById(widget.characterId);
+              .getCharacterById(
+              widget
+                  .characterId);
         });
-
   }
 
   @override
   Widget build(
       BuildContext context) {
-    final providerWatch = context.watch<
+    final providerWatch = context
+        .watch<
         CharactersProvider>();
 
-    final providerRead = context.read<
+    final providerRead = context
+        .read<
         CharactersProvider>();
 
-    CharacterModel? characterDetails = providerWatch
-        .currentCharacter;
+    Map<String,
+        dynamic>? characterDetails = providerWatch
+        .currentCharacter
+        ?.toJson();
 
     return Scaffold(
       body: CustomScrollView(
@@ -79,8 +91,11 @@ class _BuildHomePageState
           SliverAppBar(
             centerTitle: true,
             title: Text(
-              characterDetails != null ? "${characterDetails!.name}" : "",
-              style: TextStyle(
+              characterDetails !=
+                  null
+                  ? "Character Details"
+                  : "",
+              style: const TextStyle(
                   color: Colors
                       .white),
             ),
@@ -89,12 +104,37 @@ class _BuildHomePageState
                 .appBarTheme
                 .backgroundColor,
           ),
-          characterDetails != null
-              ? SliverToBoxAdapter(
-            child: Column(
-              // children: characterDetails.toJson().toList();
-            ),
-          )
+          characterDetails !=
+              null
+              ? SliverList(delegate: SliverChildBuilderDelegate(
+
+              (context, index) {
+                dynamic currentKey = characterDetails
+                    .keys
+                    .elementAt(
+                    index);
+                dynamic currentValue = characterDetails[currentKey];
+
+                if (currentValue.runtimeType == WandModel) {
+                  if ((currentValue as WandModel).isEmpty()) {
+                    return SizedBox();
+                  }
+                }
+                 
+                return AttributeRow(name: currentKey, value: currentValue,);
+              }, childCount: characterDetails
+              .keys.length,
+          ),)
+
+          // SliverToBoxAdapter(
+          //   child: ListView
+          //       .builder(
+          //       itemBuilder: (
+          //           context,
+          //           index) {
+          //
+          //       }),
+          // )
               : const SliverToBoxAdapter(
               child:
               Center(
@@ -103,6 +143,38 @@ class _BuildHomePageState
               )),
         ],
       ),
+    );
+  }
+}
+
+class AttributeRow
+    extends StatelessWidget {
+  final String name;
+  final value;
+
+  const AttributeRow({Key? key, required this.name, required this.value}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+     
+    //  
+    return Column(
+      children: [
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(name + ':', style: const TextStyle(fontWeight: FontWeight.bold),),
+              const SizedBox(width: 10),
+              Expanded(child: Text(  value.toString(), softWrap: true, overflow: TextOverflow.visible, textAlign: TextAlign.start,) )
+            ],
+          ),
+        ),
+        const Divider(),
+      ],
     );
   }
 }

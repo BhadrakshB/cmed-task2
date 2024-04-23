@@ -14,4 +14,13 @@ class WandModel {
 
   Map<String, dynamic> toJson() => _$WandModelToJson(this);
 
+  bool isEmpty() => (wood == "" || core == "" || length == null);
+
+
+  @override
+  String toString() {
+    if (wood == "" || core == "" || length == null) return super.toString();
+    return "Wood: $wood\nCore:$core\nLength: $length";
+  }
+
 }
